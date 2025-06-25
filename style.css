@@ -1,0 +1,46 @@
+body {
+    /* Gunakan linear-gradient dengan beberapa warna soft */
+    /* Anda bisa ganti kode warnanya sesuai selera */
+    background: linear-gradient(-45deg,#f4e9ff, #d4eaff, #fff8e1, #fee9e4);
+    
+    /* Ukuran background diperbesar agar gradasi terlihat bergerak */
+    background-size: 400% 400%;
+    
+    /* Terapkan animasi yang sudah kita definisikan */
+    animation: animated-gradient 20s ease-in-out infinite;
+}
+
+.mode-card {
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    background-color: rgba(255, 255, 255, 0.9); /* Sedikit transparan agar background terlihat */
+    backdrop-filter: blur(5px); /* Efek glassmorphism (opsional, tapi keren) */
+}
+
+.mode-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15) !important;
+}
+
+/* Menyembunyikan langkah kuis yang tidak aktif */
+.quiz-step.d-none {
+    display: none !important;
+}
+
+/* Tambahkan sedikit style pada card kuis & hasil agar lebih kontras */
+.card {
+    background-color: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(5px);
+}
+
+/* ===== KODE ANIMASI BACKGROUND ===== */
+@keyframes animated-gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}

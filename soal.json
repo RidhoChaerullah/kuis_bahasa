@@ -1,0 +1,80 @@
+{
+    "easy": [
+        {
+            "level": 1,
+            "tipe": "Teks dan Audio",
+            "konten": {
+                "teks": "Hello, my name is Alex. I am from Canada. I love playing guitar and exploring new places. Today, I want to share my story about visiting Indonesia.",
+                "audioSrc": "path/to/your/audio1.mp3"
+            },
+            "kuisTulis": [
+                {
+                    "pertanyaan": "Dari mana asal Alex?",
+                    "pilihan": [
+                        "Indonesia",
+                        "Kanada",
+                        "Australia"
+                    ],
+                    "jawabanBenar": "Kanada"
+                },
+                {
+                    "pertanyaan": "Apa hobi Alex?",
+                    "pilihan": [
+                        "Memasak",
+                        "Bermain gitar",
+                        "Melukis"
+                    ],
+                    "jawabanBenar": "Bermain gitar"
+                }
+            ],
+            "kuisLisan": {
+                "kalimat": "I love playing guitar and exploring new places."
+            }
+        },
+        {
+            "level": 2,
+            "tipe": "Teks dan Audio",
+            "konten": {
+                "teks": "Indonesia is a beautiful country with thousands of islands. The food is delicious, especially 'Nasi Goreng'. The people are very friendly.",
+                "audioSrc": "path/to/your/audio2.mp3"
+            },
+            "kuisTulis": [
+                {
+                    "pertanyaan": "Apa makanan yang disukai Alex di Indonesia?",
+                    "pilihan": [
+                        "Rendang",
+                        "Sate",
+                        "Nasi Goreng"
+                    ],
+                    "jawabanBenar": "Nasi Goreng"
+                }
+            ],
+            "kuisLisan": {
+                "kalimat": "The people are very friendly."
+            }
+        }
+    ],
+    "hard": [
+        {
+            "level": 1,
+            "tipe": "Video",
+            "konten": {
+                "videoSrc": "https://www.youtube.com/embed/dQw4w9WgXcQ"
+            },
+            "kuisTulis": [
+                {
+                    "pertanyaan": "Topik utama dari video ini adalah...",
+                    "pilihan": [
+                        "Sejarah",
+                        "Teknologi",
+                        "Kuliner"
+                    ],
+                    "jawabanBenar": "Teknologi"
+                }
+            ],
+            "kuisLisan": {
+                "kalimat": "Technology simplifies our daily lives."
+            }
+        }
+    ]
+}
