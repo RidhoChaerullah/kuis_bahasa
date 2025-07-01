@@ -2,56 +2,62 @@
     "easy": [
         {
             "level": 1,
-            "tipe": "Teks dan Audio",
+            "tipe": "Teks",
             "konten": {
-                "teks": "Hello, my name is Alex. I am from Canada. I love playing guitar and exploring new places. Today, I want to share my story about visiting Indonesia.",
-                "audioSrc": "path/to/your/audio1.mp3"
+                "teks": "عَلِي طَالِبٌ مُجْتَهِدٌ. هُوَ يَدْرُسُ فِي المَدْرَسَةِ كُلَّ يَوْمٍ. يُحِبُّ عِلْمَ الرِّيَاضِيَاتِ وَيَقْرَأُ الكُتُبَ فِي الْمَكْتَبَةِ. أَصْدِقَاؤُهُ يُحِبُّونَهُ لِأَنَّهُ لَطِيفٌ وَمُسَاعِدٌ."
             },
             "kuisTulis": [
                 {
-                    "pertanyaan": "Dari mana asal Alex?",
-                    "pilihan": [
-                        "Indonesia",
-                        "Kanada",
-                        "Australia"
-                    ],
-                    "jawabanBenar": "Kanada"
+                    "pertanyaan": "مَا صِفَةُ عَلِي فِي النَّصِ؟",
+                    "pilihan": ["كسول", "مُجْتَهِد", "غَاضِبٌ", "خَجُولٌ"],
+                    "jawabanBenar": "مُجْتَهِد"
                 },
                 {
-                    "pertanyaan": "Apa hobi Alex?",
-                    "pilihan": [
-                        "Memasak",
-                        "Bermain gitar",
-                        "Melukis"
-                    ],
-                    "jawabanBenar": "Bermain gitar"
+                    "pertanyaan": "أَيْنَ يَدْرُسُ عَلِي؟",
+                    "pilihan": ["في البَيْتِ", "فِي المَكْتَبَةِ", "فِي المَدْرَسَةِ", "فِي الحَدِيقَة"],
+                    "jawabanBenar": "فِي المَدْرَسَةِ"
+                },
+                {
+                    "pertanyaan": "مَاذَا يُحِبُّ عَلِي؟",
+                    "pilihan": ["العِلْمَ وَالكُتُبَ", "الرياضة", "الأكل", "السَّفَرَ"],
+                    "jawabanBenar": "العِلْمَ وَالكُتُبَ"
+                },
+                {
+                    "pertanyaan": "لِمَاذَا يُحِبُّ الْأَصْدِقَاءُ عَلِي؟",
+                    "pilihan": ["لِأَنَّهُ غَنِيٌّ", "لأَنَّهُ لَطِيفٌ وَمُسَاعِدٌ", "لِأَنَّهُ شَجَاعٌ", "لِأَنَّهُ مَشْهُورٌ"],
+                    "jawabanBenar": "لأَنَّهُ لَطِيفٌ وَمُسَاعِدٌ"
+                },
+                {
+                    "pertanyaan": "مَتَى يَدْرُسُ عَلِي فِي المَدْرَسَةِ؟",
+                    "pilihan": ["في العطلة", "كُلَّ يَوْمٍ", "فِي اللَّيْلِ", "يَوْمَ الْجُمُعَةِ"],
+                    "jawabanBenar": "كُلَّ يَوْمٍ"
                 }
-            ],
-            "kuisLisan": {
-                "kalimat": "I love playing guitar and exploring new places."
-            }
+            ]
         },
         {
             "level": 2,
-            "tipe": "Teks dan Audio",
+            "tipe": "Audio",
             "konten": {
-                "teks": "Indonesia is a beautiful country with thousands of islands. The food is delicious, especially 'Nasi Goreng'. The people are very friendly.",
-                "audioSrc": "path/to/your/audio2.mp3"
+                "teks": "Dengarkan audio yang menceritakan sebuah keluarga, lalu jawablah pertanyaan-pertanyaan berikut.",
+                "audioSrc": "./audio.mp3"
             },
             "kuisTulis": [
                 {
-                    "pertanyaan": "Apa makanan yang disukai Alex di Indonesia?",
-                    "pilihan": [
-                        "Rendang",
-                        "Sate",
-                        "Nasi Goreng"
-                    ],
-                    "jawabanBenar": "Nasi Goreng"
+                    "pertanyaan": "كَمْ عَدَدُ إِخْوَتِي؟",
+                    "pilihan": ["وَاحِدٌ", "اثْنَانِ", "ثَلَاثَةٌ", "أَرْبَعَةً"],
+                    "jawabanBenar": "ثَلَاثَةٌ"
+                },
+                {
+                    "pertanyaan": "مَاذَا يَفْعَلُ الْأَبْ؟",
+                    "pilihan": ["يَطْبُخُ", "يُعَلِّمُ فِي المَدْرَسَةِ", "يَلْعَبُ", "يَذْهَبُ إِلَى الحَدِيقَةِ"],
+                    "jawabanBenar": "يُعَلِّمُ فِي المَدْرَسَةِ"
+                },
+                {
+                    "pertanyaan": "أَيْنَ العَائِلَةُ؟",
+                    "pilihan": ["فِي المَدْرَسَةِ", "فِي الحَدِيقَةِ", "فِي بَيْتٍ", "فِي المَطْعَمِ"],
+                    "jawabanBenar": "فِي بَيْتٍ"
                 }
-            ],
-            "kuisLisan": {
-                "kalimat": "The people are very friendly."
-            }
+            ]
         }
     ],
     "hard": [
@@ -59,22 +65,35 @@
             "level": 1,
             "tipe": "Video",
             "konten": {
-                "videoSrc": "https://www.youtube.com/embed/dQw4w9WgXcQ"
+                "videoSrc": "https://www.youtube.com/watch?v=YRAt_vgFOOo"
             },
             "kuisTulis": [
                 {
-                    "pertanyaan": "Topik utama dari video ini adalah...",
-                    "pilihan": [
-                        "Sejarah",
-                        "Teknologi",
-                        "Kuliner"
-                    ],
-                    "jawabanBenar": "Teknologi"
+                    "pertanyaan": "مَنْ طَارِق؟",
+                    "pilihan": ["جني", "صديق", "ابن", "اب"],
+                    "jawabanBenar": "ابن"
+                },
+                {
+                    "pertanyaan": "مِنْ أَيْنَ الجني؟",
+                    "pilihan": ["من الغرفة", "من الحقيبة", "من الفانوس", "من الخريطة"],
+                    "jawabanBenar": "من الفانوس"
+                },
+                {
+                    "pertanyaan": "مَنْ نُور؟",
+                    "pilihan": ["أخت طارق", "أم طارق", "زوجة طارق", "ابنة طارق"],
+                    "jawabanBenar": "أم طارق"
+                },
+                {
+                    "pertanyaan": "أَيْنَ التَّذْكِرَةُ؟",
+                    "pilihan": ["في الجيب", "في الحقيبة", "على الطاولة", "في الكاميرا"],
+                    "jawabanBenar": "في الجيب"
+                },
+                {
+                    "pertanyaan": "مَا الْمِصْبَاحِ؟",
+                    "pilihan": ["كتاب", "فَانُوس", "كراس", "خريطة"],
+                    "jawabanBenar": "فَانُوس"
                 }
-            ],
-            "kuisLisan": {
-                "kalimat": "Technology simplifies our daily lives."
-            }
+            ]
         }
     ]
 }

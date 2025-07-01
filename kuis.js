@@ -3,17 +3,16 @@ document.addEventListener('DOMContentLoaded', () => {
     let quizData;
     let currentMode;
     let currentLevelIndex = 0;
-    let currentStep = 1; // 1: content, 2: written, 3: spoken
     let score = 0;
 
     // Elemen DOM yang akan dimanipulasi
     const quizTitle = document.getElementById('quiz-title');
     const levelIndicator = document.getElementById('level-indicator');
-    const allSteps = document.querySelectorAll('.quiz-step');
+    const stepContent = document.getElementById('step-content');
+    const stepWrittenQuiz = document.getElementById('step-written-quiz');
     const contentTitle = document.getElementById('content-title');
     const dynamicContent = document.getElementById('dynamic-content');
     const writtenForm = document.getElementById('written-form');
-    const spokenSentence = document.getElementById('spoken-sentence');
     const finishButton = document.getElementById('finish-button');
 
     // Fungsi utama untuk memulai kuis
@@ -27,7 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
             currentMode = urlParams.get('mode');
 
             if (!quizData[currentMode]) {
-                window.location.href = 'pilih-mode.html'; // Kembali jika mode salah
+                window.location.href = 'pilih-mode.html';
                 return;
             }
 
@@ -40,36 +39,41 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Fungsi untuk memuat level tertentu (misal: Teks 1, Video 1, dst)
+    // Fungsi untuk memuat level tertentu
     function loadLevel(levelIndex) {
-        currentStep = 1;
         const levelData = quizData[currentMode][levelIndex];
 
-        // Reset tampilan
-        document.getElementById('spoken-answer').value = '';
         levelIndicator.textContent = `Level ${levelData.level} dari ${quizData[currentMode].length}`;
+        
+        contentTitle.textContent = `Langkah 1: Materi (${levelData.tipe})`;
+        
+        let contentHTML = '';
 
-        // Load konten (Step 1)
-        contentTitle.textContent = `Langkah 1: ${levelData.tipe}`;
-        if (currentMode === 'easy') {
-            dynamicContent.innerHTML = `
-                <p><strong>Teks ${levelData.level}:</strong></p>
-                <p>${levelData.konten.teks}</p>
-                <hr>
+        if (levelData.konten.teks) {
+            contentHTML += `<p>${levelData.konten.teks}</p>`;
+        }
+
+        if (levelData.konten.audioSrc) {
+            if (contentHTML !== '') {
+                contentHTML += '<hr>';
+            }
+            contentHTML += `
                 <p>Dengarkan audionya:</p>
-                <audio controls class="w-100">
-                    <source src="${levelData.konten.audioSrc}" type="audio/mpeg">
+                <audio controls class="w-100" src="${levelData.konten.audioSrc}">
                     Browser Anda tidak mendukung elemen audio.
                 </audio>`;
-        } else { // Hard mode
-            dynamicContent.innerHTML = `
+        }
+        
+        if (levelData.konten.videoSrc) {
+            contentHTML += `
                 <p>Tonton video berikut dengan saksama untuk menjawab pertanyaan nanti.</p>
                 <div class="ratio ratio-16x9">
                     <iframe src="${levelData.konten.videoSrc}" title="YouTube video player" allowfullscreen></iframe>
                 </div>`;
         }
 
-        // Load Kuis Tulis (Step 2)
+        dynamicContent.innerHTML = contentHTML;
+        
         let writtenHTML = '';
         levelData.kuisTulis.forEach((q, index) => {
             let optionsHTML = '';
@@ -84,63 +88,59 @@ document.addEventListener('DOMContentLoaded', () => {
         });
         writtenForm.innerHTML = writtenHTML;
 
-        // Load Kuis Lisan (Step 3)
-        spokenSentence.textContent = `"${levelData.kuisLisan.kalimat}"`;
-
-        // Update tombol finish
         if (currentLevelIndex === quizData[currentMode].length - 1) {
             finishButton.textContent = 'Selesaikan Kuis & Lihat Hasil';
         } else {
             finishButton.textContent = 'Lanjut ke Level Berikutnya';
         }
 
-        showStep(1);
+        stepContent.classList.remove('d-none');
+        stepWrittenQuiz.classList.add('d-none');
     }
 
-    // Fungsi untuk menampilkan langkah yang aktif
-    function showStep(stepNum) {
-        allSteps.forEach(step => step.classList.add('d-none'));
-        document.getElementById(`step-${stepNum === 1 ? 'content' : (stepNum === 2 ? 'written-quiz' : 'spoken-quiz')}`).classList.remove('d-none');
+    window.goToWrittenQuiz = function() {
+        stepContent.classList.add('d-none');
+        stepWrittenQuiz.classList.remove('d-none');
     }
     
-    // Fungsi untuk pindah ke langkah berikutnya dalam satu level
-    window.nextStep = function() {
-        currentStep++;
-        showStep(currentStep);
-    }
-
-    // Fungsi yang dipanggil saat tombol finish di level terakhir ditekan
     window.finishLevel = function() {
         calculateScoreForCurrentLevel();
 
         if (currentLevelIndex < quizData[currentMode].length - 1) {
-            // Lanjut ke level berikutnya
             currentLevelIndex++;
             loadLevel(currentLevelIndex);
         } else {
-            // Kuis selesai, redirect ke halaman hasil
-            window.location.href = `hasil.html?score=${score}`;
+            window.location.href = `hasil.html?score=${Math.round(score)}`;
         }
     }
 
+    // =================================================================
+    // FUNGSI INI DIUBAH UNTUK SKOR BERBEDA
+    // =================================================================
     function calculateScoreForCurrentLevel() {
         const levelData = quizData[currentMode][currentLevelIndex];
-        const pointPerQuestion = 50; // Asumsi 2 soal per level = 100 poin
+        
+        // Tentukan poin per level berdasarkan mode
+        let pointPerLevel;
+        if (currentMode === 'easy') {
+            pointPerLevel = 50;
+        } else { // 'hard'
+            pointPerLevel = 100;
+        }
 
-        // Hitung skor kuis tulis
+        const totalQuestions = levelData.kuisTulis.length;
+        const pointPerQuestion = pointPerLevel / totalQuestions;
+
         levelData.kuisTulis.forEach((q, index) => {
             const userAnswer = writtenForm.querySelector(`input[name="q${index}"]:checked`);
             if (userAnswer && userAnswer.value === q.jawabanBenar) {
-                score += pointPerQuestion / levelData.kuisTulis.length;
+                score += pointPerQuestion;
             }
         });
-
-        // Hitung skor kuis lisan (simulasi)
-        const spokenAnswer = document.getElementById('spoken-answer').value;
-        if (spokenAnswer.trim().toLowerCase() === levelData.kuisLisan.kalimat.toLowerCase().replace(/["'.]/g, '')) {
-            score += 50; // Poin untuk kuis lisan
-        }
     }
+    // =================================================================
+    // AKHIR DARI BAGIAN YANG DIUBAH
+    // =================================================================
 
     // Mulai kuis saat halaman siap
     init();

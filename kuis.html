@@ -9,7 +9,7 @@
 </head>
 <body>
 
-    <div class="container mt-5">
+    <div class="container mt-5 mb-5">
         <div class="text-center border-bottom pb-3 mb-4">
             <h1 id="quiz-title" class="fw-bold"></h1>
             <p id="level-indicator" class="text-muted"></p>
@@ -22,7 +22,7 @@
                     <div class="card-body p-4">
                         <h4 id="content-title" class="card-title"></h4>
                         <div id="dynamic-content"></div>
-                        <button onclick="nextStep()" class="btn btn-primary mt-4 float-end">Lanjut ke Kuis Tulis</button>
+                        <button onclick="goToWrittenQuiz()" class="btn btn-primary mt-4 float-end">Lanjut ke Kuis Tulis</button>
                     </div>
                 </div>
             </div>
@@ -33,19 +33,7 @@
                         <h4 class="card-title">Langkah 2: Kuis Tulis</h4>
                         <p>Jawab pertanyaan berikut berdasarkan konten sebelumnya.</p>
                         <form id="written-form"></form>
-                        <button type="button" onclick="nextStep()" class="btn btn-primary mt-3 float-end">Lanjut ke Kuis Lisan</button>
-                    </div>
-                </div>
-            </div>
-            
-            <div id="step-spoken-quiz" class="quiz-step d-none">
-                <div class="card shadow-sm">
-                    <div class="card-body p-4">
-                        <h4 class="card-title">Langkah 3: Kuis Lisan</h4>
-                        <p>Ucapkan kalimat berikut dengan jelas. Untuk simulasi, ketik ulang kalimat di bawah ini.</p>
-                        <p id="spoken-sentence" class="fst-italic fw-bold"></p>
-                        <textarea class="form-control" id="spoken-answer" rows="3" placeholder="Ketik kalimat di atas di sini..."></textarea>
-                        <button id="finish-button" onclick="finishLevel()" class="btn btn-success mt-4 float-end">Selesaikan</button>
+                        <button id="finish-button" type="button" onclick="finishLevel()" class="btn btn-success mt-3 float-end">Selesaikan</button>
                     </div>
                 </div>
             </div>
