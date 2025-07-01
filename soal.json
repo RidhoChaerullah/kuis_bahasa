@@ -65,7 +65,7 @@
             "level": 1,
             "tipe": "Video",
             "konten": {
-                "videoSrc": "https://www.youtube.com/watch?v=YRAt_vgFOOo"
+                "videoSrc": "./vid.mp4"
             },
             "kuisTulis": [
                 {
